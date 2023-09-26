@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="faqboardDAO">
+<!-- 전체 리뷰 조회 -->
+	<select id="getFaqBoardList" parameterType="FaqBoardVO" resultType="FaqBoardVO">
+	SELECT *
+			FROM (SELECT ROWNUM R_NUM, B.*
+			      FROM (SELECT *
+			            FROM FAQ
+			            ORDER BY FAQNO DESC
+			           ) B
+			     )
+			WHERE R_NUM BETWEEN #{startIndex} AND #{endIndex}
+	</select>
+	
+	<!-- 카테고리별 정보 찾기  -->
+	<select id="selectCategory" parameterType="FaqBoardVO" resultType="FaqBoardVO">
+	SELECT * FROM FAQ WHERE CATEGORY =#{category}
+	</select>
+	
+	<!-- 게시글 수 조회 -->
+	<select id="selectFaqBoardTotal" parameterType="FaqBoardVO" resultType="FaqBoardVO">
+		SELECT COUNT(*) TOTAL FROM FAQ
+	</select>	
+	<!-- 게시글 보여주기 -->
+	<select id="getFaqBoard" parameterType="FaqBoardVO" resultType="FaqBoardVO">
+		SELECT * FROM FAQ WHERE FAQNO = #{faqno}
+	</select>
+	
+	 <insert id="insertFaqBoard" parameterType="FaqBoardVO">
+		INSERT INTO FAQ (CATEGORY, TITLE, CONTENT, FAQNO)
+		    VALUES(#{category}, #{title}, #{content}, faqno.nextval)
+	</insert>
+	
+	<update id="updateFaqBoard" parameterType="FaqBoardVO">
+		UPDATE FAQ
+		SET CATEGORY = #{category},
+		    TITLE = #{title},
+		    CONTENT = #{content}
+		WHERE FAQNO = #{faqno}
+	</update>
+	
+	<delete id="deleteFaqBoard" parameterType="FaqBoardVO">
+		DELETE FROM FAQ WHERE FAQNO = #{faqno}
+	</delete> 
+</mapper>

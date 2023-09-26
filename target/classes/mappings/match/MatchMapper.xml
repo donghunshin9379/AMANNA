@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MatchVO">
+	
+	<!--아이디값 받기  -->
+	<insert id="insertMatching" parameterType="MatchVO" >
+		INSERT INTO MATCHING(SEQ, ID, REC_ID)
+		VALUES((SELECT NVL(MAX(SEQ),0) + 1 FROM MATCHING),
+		#{id}, #{recId})
+	</insert>
+	
+	<!-- 내가 받은 신청 (수신)-->
+	<select id="getMatchList" parameterType="MatchVO" resultType="MatchVO"> 
+		SELECT G.*, M.*
+		FROM MATCHING G, MEMBER M
+		WHERE G.ID = M.ID 
+		AND G.REC_ID = #{id}
+	</select>
+	
+	<!-- 내가 보낸 신청 (발신) -->
+	<select id="getMyMatchList" parameterType="MatchVO" resultType="MatchVO"> 
+		SELECT G.*, M.*
+		FROM MATCHING G, MEMBER M
+		WHERE G.REC_ID = M.ID 
+		AND G.ID = #{id}
+	</select>
+	
+	<!-- 내게 신청한 유저 프로필 get -->
+	<select id="getCaller" parameterType="MatchVO" resultType="MatchVO">
+		 SELECT G.SEQ, G.REC_ID, M.SEX, M.NAME, M.AGE, M.HEIGHT, M.IMGNAME AS IMGNAME,
+         M.WEIGHT, M.EDU, M.JOB, M.SMOKE, M.HOBBY, M.CONTENT, G.PROGRESS
+		 FROM MATCHING G, MEMBER M
+		 WHERE G.ID = M.ID 
+		 AND G.REC_ID = #{id}
+		 AND G.SEQ = #{seq}
+</select>
+	
+	<!-- 내가 신청했던 상대 프로필 가져오기 -->
+	<select id="getReceiver" parameterType="MatchVO" resultType="MatchVO">
+		 SELECT G.SEQ, G.REC_ID, M.SEX, M.NAME, M.AGE, M.HEIGHT,  M.IMGNAME AS IMGNAME,
+         M.WEIGHT, M.EDU, M.JOB, M.SMOKE, M.HOBBY, M.CONTENT, G.PROGRESS
+		 FROM MATCHING G, MEMBER M
+		 WHERE G.REC_ID = M.ID
+		 AND G.ID = #{id}
+		 AND G.SEQ = #{seq}
+	</select>
+	
+	<!-- 내게 온 매칭신청 수락하기 -->
+	<update id="yesMatch" parameterType="MatchVO">
+		UPDATE MATCHING SET PROGRESS = '수락'
+		WHERE REC_ID = #{id}
+		AND SEQ = #{seq} <!--  아이디 #{id}, 매칭신청번호 #{seq} -->
+	</update>	
+	
+	<!-- 내게 온 매칭신청 거절하기 -->
+	<update id="noMatch" parameterType="MatchVO">
+		UPDATE MATCHING SET PROGRESS = '거절'
+		WHERE REC_ID = #{id} 
+		AND SEQ = #{seq} <!--  아이디 #{id}, 매칭신청번호 #{seq} -->
+	</update>
+	
+	<!-- 내가 보낸 매칭신청 취소하기 -->
+	<update id="cancelMatch" parameterType="MatchVO">
+		UPDATE MATCHING SET PROGRESS = '취소'
+		WHERE ID = #{id}
+		AND SEQ = #{seq} <!--  아이디 #{id}, 매칭신청번호 #{seq} -->
+	</update>	
+</mapper>

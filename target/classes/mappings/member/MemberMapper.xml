@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="memberDAO">
+<!-- 동훈 ================================================================== -->
+	<!-- 전체멤버 조회 -->
+	<select id="getMemberList" parameterType="MemberVO" resultType="MemberVO">
+		SELECT * FROM MEMBER
+	</select>
+	
+	<!-- 게시글 수 조회  -->
+    <select id="selectMemberList" parameterType="MemberVO" resultType="MemberVO">
+     SELECT COUNT(*) TOTAL FROM MEMBER WHERE SEX = '남성'
+    </select>
+    
+   <!--   게시글 수 조회 (남) 
+    <select id="selectMemberListM" parameterType="MemberVO" resultType="MemberVO">
+     SELECT COUNT(*) TOTAL FROM MEMBER WHERE SEX = '남성'
+    </select>
+    
+      게시글 수 조회 (여)
+    <select id="selectMemberListW" parameterType="MemberVO" resultType="MemberVO">
+     SELECT COUNT(*) TOTAL FROM MEMBER WHERE SEX = '여성'
+    </select> -->
+	
+	<!--멤버 1명 조회  -->
+	<select id="getMember" parameterType="MemberVO" resultType="MemberVO">
+		SELECT * FROM MEMBER WHERE ID=#{id}
+	</select>
+	
+	
+    <!-- 전체멤버 조회 (페이징)-->
+    <select id="getMemberListP" parameterType="MemberVO" resultType="MemberVO">
+		SELECT *
+		FROM  MEMBER
+		WHERE M_NO BETWEEN #{startIndex} AND #{endIndex} 
+	</select>
+	
+	 <!-- 여성멤버 조회 (페이징)-->
+    <select id="getMemberListW" parameterType="MemberVO" resultType="MemberVO">
+		SELECT *
+		FROM  MEMBER
+		WHERE M_NO BETWEEN #{startIndex} AND #{endIndex} AND SEX= '여성'
+	</select>
+	
+	<!-- 남성멤버 조회 (페이징)-->
+    <select id="getMemberListM" parameterType="MemberVO" resultType="MemberVO">
+		SELECT *
+		FROM  MEMBER
+		WHERE M_NO BETWEEN #{startIndex} AND #{endIndex} AND SEX= '남성'
+	</select>
+
+<!-- 종현================================================================== -->
+	<!-- 남녀 조회 -->
+	<select id="sexMemberList" parameterType="MemberVo" resultType="MemberVO">
+		SELECT * FROM MEMBER WHERE SEX = #{sex}
+	</select>
+	
+	<!-- 조건 검색 -->
+	<select id="getMemberList_I" parameterType="String" resultType="MemberVO">
+		SELECT * FROM MEMBER
+		WHERE ID LIKE '%'|| #{searchKeyword} ||'%'
+	</select>
+	
+	<select id="getMemberList_S" parameterType="String" resultType="MemberVO">
+		SELECT * FROM MEMBER
+		WHERE SEX LIKE '%'|| #{searchKeyword} ||'%'
+	</select>
+	
+	<!-- 남/녀 매출 합계  -->
+	<select id="getManTotPay" parameterType="MemberVO" resultType="MemberVO">
+		SELECT SEX, SUM(TOTPAY) AS SUM FROM MEMBER GROUP BY SEX
+	</select>
+	
+	<!-- 남/녀 회원수 -->
+	<select id="getSexCnt" parameterType="MemberVO" resultType="MemberVO">
+		SELECT SEX, COUNT(ID) AS CNT FROM MEMBER GROUP BY SEX
+	</select>
+	
+		<!-- 아이디 찾기 -->
+	<select id="getId" parameterType="MemberVO" resultType="MemberVO">
+		SELECT ID FROM MEMBER
+		WHERE NAME = #{name} AND EMAIL=#{email}
+	</select>
+<!-- 명식 ================================================================== -->
+	
+	<select id="login" parameterType="MemberVO" resultType="MemberVO">
+		SELECT * FROM MEMBER WHERE ID = #{id} AND PWD = #{pwd}
+	</select>
+	
+	
+	<select id="checkId" resultType="int">
+		SELECT COUNT(*) FROM MEMBER WHERE ID = #{id}
+	</select>
+	
+	<insert id="register" parameterType="MemberVO">
+		INSERT INTO MEMBER (ID, PWD, EMAIL, NAME)
+		VALUES (#{id}, #{pwd}, #{email}, #{name})
+	</insert>
+	
+	<update id="register2" parameterType="MemberVO">
+		UPDATE MEMBER SET SEX = #{sex}, AGE = #{age}, HEIGHT = #{height}, WEIGHT = #{weight}, EDU = #{edu}, 
+						  JOB = #{job}, SMOKE = #{smoke}, PHONE = #{phone}, HOBBY = #{hobby}, CONTENT = #{content},
+						  IMGNAME = #{imgName}, EMAIL =#{email}, ADDRESS = #{address} WHERE ID = #{id}
+	</update>
+	
+    <update id="updateMember" parameterType="MemberVO">
+		UPDATE MEMBER SET NAME = #{name}, AGE = #{age}, HEIGHT = #{height}, WEIGHT = #{weight}, EDU = #{edu}, 
+						  JOB = #{job}, SMOKE = #{smoke}, PHONE = #{phone}, HOBBY = #{hobby}, CONTENT = #{content},
+						  IMGNAME = #{imgName}, EMAIL =#{email}, ADDRESS = #{address} WHERE ID = #{id}		
+	</update>
+	
+	<update id="updatePwd" parameterType="MemberVO">
+		UPDATE MEMBER SET PWD = #{pwd} WHERE ID = #{id}		
+	</update>
+	
+	<delete id="deleteMember" parameterType="MemberVO">
+		DELETE FROM MEMBER WHERE ID = #{id}
+	</delete>
+
+
+<select id="chkEmail" resultType="int">
+		SELECT COUNT(*) FROM MEMBER WHERE EMAIL = #{email}
+	</select>
+
+
+
+<!-- 정권================================================================== -->
+	
+	<update id="updateTicket" parameterType="MemberVO">
+	UPDATE MEMBER SET TICKET = TICKET + #{ticket}, TOTPAY= #{pay} * #{ticket}, PAY=PAY - (#{pay} * #{ticket}) WHERE id = #{id}
+	</update>
+	
+	
+	<update id="ticketMinus" parameterType="MemberVO">
+	UPDATE MEMBER SET TICKET = TICKET - 1 WHERE id = #{id}
+	</update>
+	
+	<update id="ticketPlus" parameterType="MemberVO">
+	UPDATE MEMBER SET TICKET = TICKET + 1 WHERE id = #{id}
+	</update>
+	
+	
+	<!-- 재형 -->
+	
+	<!-- 회원 숫자 -->	
+	<select id="selectMemberTotal" parameterType="MemberVO" resultType="MemberVO">
+		SELECT COUNT(*) TOTAL FROM MEMBER 
+	</select>
+	
+		<!-- 남성 회원 숫자 -->	
+	<select id="selectMMemberTotal" parameterType="MemberVO" resultType="MemberVO">
+		SELECT COUNT(*) TOTAL FROM MEMBER WHERE SEX = '남성'
+	</select>
+	
+	 <!--  게시글 수 조회 (남) --> 
+    <select id="getMMemberList" parameterType="MemberVO" resultType="MemberVO">
+      SELECT *
+      FROM (SELECT ROWNUM R_NUM, B.*
+            FROM (SELECT *
+                  FROM MEMBER
+                    WHERE SEX='남성'
+                  ORDER BY M_NO DESC
+                 ) B
+           )
+       WHERE R_NUM BETWEEN #{startIndex} AND #{endIndex}
+    </select>
+    
+    <select id="selectWMemberTotal" parameterType="MemberVO" resultType="MemberVO">
+		SELECT COUNT(*) TOTAL FROM MEMBER WHERE SEX = '여성'
+	</select>
+	
+	  <!--  게시글 수 조회 (여) --> 
+    <select id="getWMemberList" parameterType="MemberVO" resultType="MemberVO">
+      SELECT *
+      FROM (SELECT ROWNUM R_NUM, B.*
+            FROM (SELECT *
+                  FROM MEMBER
+                    WHERE SEX='여성'
+                  ORDER BY M_NO DESC
+                 ) B
+           )
+      WHERE R_NUM BETWEEN #{startIndex} AND #{endIndex}
+    </select>
+	
+
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

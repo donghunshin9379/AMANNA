@@ -1,0 +1,155 @@
+@font-face {
+  font-family: "GowunBatang-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunBatang-Regular.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+/* footer ---------------------*/
+ol,
+ul {
+  list-style: none;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.footerinfo {
+  color: #fff;
+}
+.footer_head {
+  border-bottom: 1px solid #3d3d49;
+}
+.footer_head > div {
+  display: flex;
+  justify-content: space-between;
+  height: 77px;
+  align-items: center;
+}
+.body_wrap {
+  width: 1280px;
+  margin: 0 auto;
+  padding: 0;
+}
+.ft_menu {
+  display: flex;
+  font-size: 14px;
+  font-weight: 700;
+}
+.ft_subinfos {
+  display: flex;
+}
+.gopc {
+  padding: 20px 0;
+  border-top: 1px solid #403f50;
+  text-align: center;
+  font-size: 12px;
+  color: #fff;
+  background-color: #272734;
+}
+footer {
+  background-color: #342728;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0 auto;
+}
+#titleimg1 {
+  width: 120px;
+  margin-top: 5px;
+}
+.ft_sns {
+  display: flex;
+  margin-bottom: 25px;
+}
+.copybox {
+  padding-top: 30px;
+  font-family: "GowunBatang-Regular";
+  font-size: 14px;
+}
+.ft_subinfos > div:last-child {
+  padding: 28px 0 35px 25px;
+  font-family: "GowunBatang-Regular";
+}
+#sns {
+  width: 30px;
+  margin-right: 10px;
+}
+.ft_menu li {
+  border-right: 1px solid #f0f0f0;
+  margin-right: 10px;
+  list-style: none;
+  color: rgb(255, 255, 255);
+}
+a:visited {
+  color: inherit;
+}
+.azx {
+  position: relative;
+  left: 600px;
+}
+/* ----- */
+#wrap {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+/* 2 */
+/* .mmm {
+  display: flex;
+} */
+#aaaa {
+  width: 1350px;
+}
+.qwert {
+  position: relative;
+  top: 500px;
+}
+/* 3 */
+.qwerty {
+  position: relative;
+  top: 500px;
+  font-family: "GowunBatang-Regular";
+  color: #333333;
+  font-weight: bold;
+}
+
+.plus {
+  float: right;
+}
+
+.qwerty span:nth-child(1) {
+  font-size: 25px;
+}
+
+.review {
+  border: 1px solid;
+  border-color: #cacaca;
+  width: 1350px;
+  height: 520px;
+}
+/* 4 */
+.total {
+  position: relative;
+  top: 550px;
+  display: flex;
+  font-size: 25px;
+}
+#one {
+  width: 33%;
+  height: 360px;
+  margin-right: 20px;
+  font-family: "GowunBatang-Regular";
+  color: #333333;
+  font-weight: bold;
+}
+#plus {
+  font-size: 15px;
+  float: right;
+}
+#plus1 {
+  border-top: 2px solid;
+  border-top-color: #fd8f9f;
+}

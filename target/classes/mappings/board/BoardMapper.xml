@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boardDAO">
+	<select id="getBoardList" parameterType="BoardVO"
+		resultType="BoardVO">
+		SELECT *
+		FROM (SELECT ROWNUM R_NUM, B.*
+		FROM (SELECT *
+		FROM B_QNA
+		WHERE 1=1
+		<if test='searchCondition == "qTitle" and searchKeyword != "" '>
+			AND Q_TITLE LIKE '%'|| #{searchKeyword} ||'%'
+		</if>
+		<if test='searchCondition == "qWriter" and searchKeyword != "" '>
+			AND Q_WRITER LIKE '%'|| #{searchKeyword} ||'%'
+		</if>
+		ORDER BY Q_NO DESC
+		) B
+		)
+		WHERE R_NUM BETWEEN #{startIndex} AND #{endIndex}
+	</select>
+
+	<select id="getBoardList_T" parameterType="BoardVO"
+		resultType="BoardVO">
+		SELECT *
+		FROM (
+		SELECT ROWNUM R_NUM, B.*
+		FROM (
+		SELECT *
+		FROM B_QNA
+		WHERE Q_TITLE LIKE '%'|| #{searchKeyword} ||'%'
+		ORDER BY Q_NO DESC
+		) B
+		)
+		WHERE R_NUM BETWEEN #{startIndex} AND #{endIndex}
+	</select>
+
+	<select id="getBoardList_W" parameterType="BoardVO"
+		resultType="BoardVO">
+		SELECT *
+		FROM (
+		SELECT ROWNUM R_NUM, B.*
+		FROM (
+		SELECT *
+		FROM B_QNA
+		WHERE Q_WRITER LIKE '%'|| #{searchKeyword} ||'%'
+		ORDER BY Q_NO DESC
+		) B
+		)
+		WHERE R_NUM BETWEEN #{startIndex} AND #{endIndex}
+	</select>
+
+
+
+	<select id="getBoard" parameterType="BoardVO"
+		resultType="BoardVO">
+		SELECT * FROM B_QNA WHERE Q_NO = #{qNo}
+	</select>
+
+	<insert id="insertBoard" parameterType="BoardVo">
+		INSERT INTO B_QNA (Q_NO, Q_TITLE, Q_PWD, Q_WRITER, Q_CONTENT, Q_DATE,
+		LOCK_FLAG, CONFIRM)
+		VALUES(q_no.nextval, #{qTitle},#{qPwd},#{qWriter},
+		#{qContent}, SYSDATE, #{lockFlag},'답변대기')
+	</insert>
+
+	<delete id="deleteBoard" parameterType="BoardVO">
+		DELETE FROM B_QNA WHERE Q_NO = #{qNo}
+	</delete>
+
+	<update id="updateBoard" parameterType="BoardVO">
+		UPDATE B_QNA
+		SET Q_TITLE = #{qTitle},
+		Q_CONTENT = #{qContent},
+		Q_DATE = SYSDATE,
+		LOCK_FLAG = #{lockFlag},
+		CONFIRM = '수정 후 답변 대기'
+		WHERE Q_NO = #{qNo}
+	</update>
+
+	<update id="updateAnswer" parameterType="BoardVO">
+		UPDATE B_QNA SET CONFIRM = '답변 완료' WHERE Q_NO = #{qNo}
+	</update>
+
+	<select id="selectNBoardTotal" parameterType="BoardVO"
+		resultType="BoardVO">
+		SELECT COUNT(*) TOTAL FROM B_QNA
+	</select>
+
+	<select id="passwordCheck" parameterType="BoardVO"
+		resultType="BoardVO">
+		SELECT *
+		FROM B_QNA
+		WHERE Q_NO = #{qNo}
+		AND Q_PWD = #{qPwd}
+	</select>
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="QrBoardDAO">
+  
+ 	 <select id="getQrBoardList" parameterType="QrBoardVO" resultType="QrBoardVO">
+		SELECT * FROM C_REVIEW WHERE  R_NO = #{rNo} ORDER BY RC_NO DESC 
+	</select>   
+  
+  	<insert id="insertQrBoard" parameterType="QrBoardVO">
+  	INSERT INTO C_REVIEW(RC_NO, R_NO, RC_WRITER, RC_COMMENT_DATE, RC_CONTENT)
+	VALUES(rc_no.nextval, #{rNo}, #{rcWriter}, SYSDATE, #{rcContent})
+  	</insert>
+  	
+  	<update id="updateQrBoard" parameterType="QrBoardVO">
+  	UPDATE C_REVIEW SET RC_CONTENT = #{rcContent} WHERE RC_NO = #{rcNo}
+  	</update>
+  	
+  	<delete id="deleteQrBoard" parameterType="QrBoardVO">
+  	DELETE FROM C_REVIEW WHERE RC_NO = #{rcNo}
+  	</delete>
+  </mapper>

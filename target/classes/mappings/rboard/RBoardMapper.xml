@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="rboardDAO">
+
+<!-- 전체 리뷰 조회 -->
+<select id="getRBoardList" parameterType="RBoardVO" resultType="RBoardVO">
+SELECT *
+		FROM (SELECT ROWNUM R_NUM, B.*
+		      FROM (SELECT *
+		            FROM B_REVIEW
+		            ORDER BY R_NO DESC
+		           ) B
+		     )
+		WHERE R_NUM BETWEEN #{startIndex} AND #{endIndex}
+</select>
+<!-- 게시글 수 조회  -->
+<select id="selectNRBoardTotal" parameterType="RBoardVO" resultType="RBoardVO">
+SELECT COUNT(*) TOTAL FROM B_REVIEW
+</select>
+
+<select id="getRBoard" parameterType="RBoardVO" resultType="RBoardVO"> 
+	SELECT * FROM B_REVIEW WHERE R_NO = #{rNo}
+</select>
+
+
+<select id="getMyRBoardList" parameterType="RBoardVO" resultType="RBoardVO">
+	SELECT * FROM B_REVIEW WHERE ID = #{id} ORDER BY R_NO DESC
+</select>
+
+<insert id="insertRBoard" parameterType="RBoardVO">
+    INSERT INTO B_REVIEW (R_NO, ID, R_TITLE, R_CONTENT, R_DATE, UPLOADFILE1, COUNT)
+    VALUES (R_NO.nextval, #{id}, #{rTitle}, #{rContent}, SYSDATE, #{uploadFile1}, 0)
+</insert>
+
+
+<delete id="deleteRBoard" parameterType="RBoardVO">
+	DELETE FROM B_REVIEW WHERE R_NO = #{rNo}
+</delete>
+<update id="updateRBoard" parameterType="RBoardVO">
+	UPDATE B_REVIEW SET R_TITLE = #{rTitle}, R_CONTENT = #{rContent} WHERE R_NO = #{rNo}
+</update> 
+
+<update id="updateCountRBoard" parameterType="RBoardVO">
+	 UPDATE B_REVIEW SET COUNT = COUNT + 1 WHERE R_NO = #{rNo}
+</update>
+</mapper> 

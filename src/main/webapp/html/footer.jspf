@@ -1,0 +1,69 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>header</title>
+    <link rel="stylesheet" href="footer.css" />
+  </head>
+  <body>
+    <!-- footer -------------------------------------------- -->
+    <footer>
+      <div class="footerinfo">
+        <div class="footer_head">
+          <div class="body_wrap">
+            <p>
+              <img
+                src="resources/img/로고.png"
+                alt="직장인소개팅 로고"
+                id="titleimg1"
+              />
+            </p>
+            <ul class="ft_menu">
+              <li><a href="#">이용약관&nbsp;&nbsp;</a></li>
+              <li><a href="#">개인정보처리방침&nbsp;&nbsp;</a></li>
+              <li><a href="#">회사소개&nbsp;&nbsp;</a></li>
+              <li><a href="#">이용안내&nbsp;&nbsp;</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="body_wrap ft_subinfos">
+          <div>
+            <div class="copybox">
+              <p class="copy">
+                서비스명: 아만나 회사명: AMANNA 대표: qwerty <br />사업자번호:
+                123-123-123123
+              </p>
+              <p class="copy">주소: 서울특별시 강남구 강남대로</p>
+              <p class="copy">개인정보관리책임자:qwert E-MAIL: 123@.co.kr</p>
+              <br />
+            </div>
+
+            <ul class="ft_sns">
+              <li>
+                <img src="resources/img/blog.png" alt="블로그" id="sns" />
+              </li>
+              <li>
+                <img src="resources/img/insta.png" alt="인스타그램" id="sns" />
+              </li>
+              <li>
+                <img src="resources/img/ka.png" alt="채널톡" id="sns" />
+              </li>
+            </ul>
+          </div>
+          <div class="azx">
+            <h4>고객행복센터</h4>
+            <p class="telnumber">02-1234-1234</p>
+            <p class="timetxt">평일 13시 ~ 17시 ( 채널톡 09:30 ~ 17:00 )</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

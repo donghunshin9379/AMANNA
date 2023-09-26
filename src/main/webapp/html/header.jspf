@@ -1,0 +1,160 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <style>
+    #myPagebtn{
+    
+    color: #FFAAAF;
+    
+    }
+    
+    #logout {
+  font-size: 16px;
+  color: #ff93a2;
+  text-decoration: none;
+  margin: 10px;
+  font-family: "GowunBatang-Regular";
+}
+    .top_gnb {
+    font-family: "GowunBatang-Regular";
+    
+    
+    }
+    
+   #event {
+  margin-left: -80px;
+}
+    </style>
+
+  <link rel="stylesheet" href="header.css" />
+  
+    <div id="wrap">
+      <!-- 헤더 시작 -->
+      <div>
+        <div class="top_gnb">
+          <div class="body_wrap1">
+            <div class="text">
+              <span class="mungu">1:1 소개팅 하나만을 전문적으로 합니다.</span>
+            </div>
+            <div>
+            <c:choose>
+            <c:when test="${member.id == null }">
+              <a href="login.jsp" id="login">로그인</a>
+              <a href="logout.jsp" id="logout" style="display:none;">로그아웃</a>
+            </c:when>
+            <c:otherwise>
+              <a href="login.jsp" id="login"  style="display:none;">로그인</a>
+             ${member.id }님이 로그인중입니다.<a href="logout.jsp" id="logout">로그아웃</a>
+             </c:otherwise>
+             </c:choose>
+              <a href="join.jsp" id="joinbtn">회원가입</a>
+              <a href="mypage.jsp" id="myPagebtn">myPage</a>
+            </div>
+          </div>
+        </div>
+        <!--두번쨰 줄------------------------------------------------------- -->
+        <div class="header_wrap">
+          <nav class="body_wrap2">
+            <div class="titleimg">
+              <a href="main.do" onclick="eventopen();"
+                ><img src="resources/img/로고.png" alt="직장인소개팅" id="titleimg"
+              /></a>
+            </div>
+            <!-- 글자시작 -->
+            <div class="mainav">
+              <ul class="mainnav1">
+                <li id="line1">
+                  <a href="paymentPage.jsp" class="maintitle" id="line1">이용안내</a>
+                  <ul class="site_nav">
+                    <li>
+                      <a href="guide.jsp" id="line"
+                        >이용방법&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a
+                      >
+                    </li>
+                    <li>
+                      <a href="paymentPage.jsp" id="line"
+                        >이용금액&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a
+                      >
+                    </li>
+                    <li>
+                      <a href="rule.jsp" id="line"
+                        >세부규정&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a
+                      >
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="getRBoardList.do" class="maintitle">만남후기</a>
+                  <ul class="site_nav" id="line1">
+                    <li>
+                      <a href="#" id="line"
+                        >포토후기&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#" id="line"
+                        >생생리뷰&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a
+                      >
+                    </li>
+                  </ul>
+                </li>
+
+                <li>
+                  <a href="joinTest.jsp" class="maintitle">연애테스트</a>
+                  <ul class="site_nav" id="line1">
+                    <li>
+                      <a href="joinTest.jsp" id="line"
+                        >가입테스트&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#" id="line"
+                        >심리테스트&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a
+                      >
+                    </li>
+                  </ul>
+                </li>
+
+                <li>
+                  <a href="CustomerService.do" class="maintitle" id="maintitle0">고객센터</a>
+                </li>
+                <li>
+                  <a href="getMemberList.do?id=${member.id }" class="maintitle" id="maintitle0">신청하기</a>
+                </li>
+                <li>
+                  <a href="event.jsp" class="maintitle" id="event">이벤트</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <!--헤더 끝  -->
+    
+
+</header>
+<script>
+
+function eventopen() {
+	var cookiedata = document.cookie; 
+	
+	if (cookiedata.indexOf("popup=done") < 0) {
+		 window.open("popEvent.jsp","이벤트","width=380, height=500, left=700, top=200 ");
+	} 
+	
+	if (cookiedata.indexOf("popup2=done") < 0){
+		window.open("popNotice.jsp","공지사항","width=350, height=500, left=200, top=200 ");
+		
+	} else {
+		return;
+		
+	}
+}
+
+
+
+
+</script>

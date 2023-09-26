@@ -1,0 +1,175 @@
+@font-face {
+  font-family: "GowunBatang-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunBatang-Regular.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/*    <div class="top_gnb"> */
+#line {
+  text-decoration: none;
+  text-align: center;
+}
+a {
+  text-decoration: none;
+}
+.top_gnb {
+  height: 35px;
+  border-bottom: 1.5px solid #ffdcdc;
+}
+.body_wrap1 {
+  width: 1350px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 1.5px;
+  /*=> 가운데정렬위치 */
+}
+
+#login {
+  font-size: 16px;
+  color: #ff93a2;
+  text-decoration: none;
+  margin: 10px;
+  font-family: "GowunBatang-Regular";
+}
+
+
+#joinbtn {
+  font-size: 16px;
+  color: #6d7278;
+  background-color: #fd8f9f;
+  color: #fff;
+  text-decoration: none;
+  padding: 11px;
+  font-family: "GowunBatang-Regular";
+}
+.mungu {
+  color: #aaa1a3;
+  font-size: 14px;
+  font-family: "GowunBatang-Regular";
+}
+/* 하단부분 헤더--------------------------------------------------------------------- */
+
+.body_wrap2 {
+  width: 1280px;
+  margin: 0 auto;
+}
+
+h1 {
+  width: 230px;
+}
+/* 점 없애기 */
+ol,
+ul {
+  list-style: none;
+}
+
+#titleimg {
+  width: 150px;
+  margin-bottom: 5px;
+}
+.titleimg {
+	width: 1350px;
+}
+.mode {float: right; margin-top: 8px; font-size: 30px;}
+nav {
+  width:1280px;
+  align-items: center;
+  height: 70px;
+  
+}
+.header_wrap {
+  padding-top: 10px;
+  border-bottom: 1.5px solid #ffdcdc;
+  width: 100%;
+}
+
+.mainnav1 li {
+  line-height: 30px;
+  width: 200px;
+  text-align: center;
+
+  /* cursor: pointer; */
+}
+
+.site_nav > li > a {
+  text-align: center;
+}
+
+.site_nav li a:hover {
+  color: rgb(255, 149, 149);
+  font-weight: bold;
+}
+
+.site_nav {
+  display: none;
+  text-align: center;
+  background-color: #ffdcdc;
+  position: absolute;
+  top: 86px;
+  width: 160px;
+}
+
+.site_nav > li {
+  width: 200px;
+}
+.site_nav > li > a {
+  /* margin-left: -40px; */
+  font-size: 14px;
+  color: #333333;
+  font-family: "GowunBatang-Regular";
+  /* text-align: center; */
+}
+
+.subnav {
+  display: flex;
+  padding: 0 0 0 200px;
+  font-size: 16px;
+  color: #333333;
+  font-family: "GowunBatang-Regular";
+  margin: 0 auto;
+}
+/* 상단메뉴바 */
+
+.subnav body_wrap {
+  display: flex;
+  text-align: center;
+  align-items: center;
+}
+
+.mainav {
+  text-align: center;
+  align-items: center;
+}
+
+.maintitle {
+  text-decoration: none;
+  font-family: "GowunBatang-Regular";
+  font-size: 16px;
+  color: #4a4848;
+  font-weight: bold;
+}
+#maintitle0 {
+  margin-right: 25px;
+  padding: 20px;
+}
+.mainnav1 {
+  position: absolute;
+  display: flex;
+  padding: 30px;
+  top: 29px;
+  z-index: 100;
+}
+#line {
+  text-decoration: none;
+}
+#line1 {
+  font-size: 16px;
+  color: #4a4848;
+  text-align: center;
+}
+/* ----------------헤더 끝 ---------------------------*/
+
+}

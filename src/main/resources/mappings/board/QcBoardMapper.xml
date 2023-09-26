@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="QcBoardDAO">
+  
+	<select id="getQcBoardList" parameterType="QcBoardVO" resultType="QcBoardVO">
+	SELECT * FROM C_QNA WHERE  Q_NO = #{qNo} ORDER BY QC_NO DESC 
+	</select>
+	
+	
+	<insert id="insertQcBoard" parameterType="QcBoardVO">
+	INSERT INTO C_QNA(QC_NO, Q_NO, QC_WRITER, QC_COMMENT_DATE, QC_CONTENT)
+	VALUES(qc_no.nextval, #{qNo}, 'ADMIN', SYSDATE, #{qcContent})
+	</insert>
+	
+	<update id="updateQcBoard" parameterType="QcBoardVO">
+	UPDATE C_QNA SET QC_CONTENT = #{qcContent} WHERE QC_NO = #{qCno}
+	</update>	
+	
+	<delete id="deleteQcBoard" parameterType="QcBoardVO">
+	DELETE FROM C_QNA WHERE QC_NO = #{qCno}
+	</delete>
+	
+	<select id="getQcBoardDetail" parameterType="QcBoardVO" resultType="QcBoardVO">
+	SELECT * FROM C_QNA WHERE QC_NO = #{qCno} ORDER BY QC_NO DESC
+	</select>
+	
+  </mapper>
