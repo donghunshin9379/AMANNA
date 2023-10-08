@@ -106,14 +106,15 @@ AMANNA는 유저간 상호 매칭을 서비스합니다.
     <input type="hidden" name="seq"	id="matchSeq"> <input type="submit" value="수락하기"
 						onclick="setMatchAction('yesMatch.do')">
       
-  -**요청 수락하기 (UPDATE)**
+  -**요청 수락 동작**
+  - 진행상태가 '수락'으로 변경(UPDATE)됩니다.
 	public void yesMatch(MatchVO vo) {
 		System.out.println("===> MyBatis 사용 yesMatch(vo) 실행");
 		System.out.println("===> 담긴값 : " + vo);
 		mybatis.update("yesMatch", vo);
 	}
 
-  -**요청 거절하기 (UPDATE)**
+   -**요청 거절 동작**
   - 수락과 같은 방식으로 컬럼에 '거절'로 표시됩니다.
   - 특이사항으로 거절,취소 상태인 경우 script를 통해 채팅실행을 방지했습니다.
 
