@@ -31,7 +31,7 @@
 </br>
 
 ## 3. ERD 설계
-![AMANNA ERD](https://github.com/Integerous/all-in-one/assets/139945914/ce26b0fc-edb7-4871-a11f-d111a23703e3)
+![ERD](https://github.com/Integerous/all-in-one/assets/139945914/871ba24e-20b4-4064-b2f3-2d35ed87c309)
 
 
 ## 4. 핵심 기능
