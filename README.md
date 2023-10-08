@@ -135,6 +135,6 @@ AMANNA는 유저간 상호 매칭을 서비스합니다.
 
 ### 4.4. 수락 후 1대1 채팅
 ![보낸매칭 수락](https://github.com/Integerous/all-in-one/assets/139945914/e59383fd-20b4-4e22-a4fb-3a971aaa20ce)
-이전에 스크립트 코드(window.open("chat.jsp","아만나 채팅","width=550, height=900");)를 통해 유저가 1대1 채팅을 할 수 있습니다. 
+- 이전에 스크립트 코드를 통해 유저가 1대1 채팅을 할 수 있습니다. 
 
 ## 6. 회고 / 느낀점
