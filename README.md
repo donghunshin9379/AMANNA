@@ -1,12 +1,13 @@
 # :pushpin: AMANNA
 > 유저 상호 매칭/채팅 웹
-  
+
 
 </br>
 
-## 1. 제작 기간 & 참여 인원
+## 1. 제작 기간 & 참여 인원 & 나의 역할
   - 2023년 5월 18일 ~ 6월 20일
   - 팀 프로젝트 (6명)
+  - 유저 상호 매칭기능 담당
 
 </br>
 
@@ -73,13 +74,16 @@ AMANNA는 유저간 상호 매칭을 서비스합니다.
   - 화면 상단에 내가 받은 매칭, 하단에 보낸 매칭을 띄웁니다.
     
   - 수신된 매칭목록에서 특정 유저 프로필 확인
-  - -**코드 확인**
+-**코드 확인**
      ```
     <td><a href="getCaller.do?seq=${match.seq }&id=${member.id}&matchId=${match.id}">프로필 확인</a>
-    </td> ```
+    </td>
+     ```
+     
   - getCaller.do 로 실행된 컨트롤러를 통해서 이전에 받은 match.seq, member.id, match.id 값을 근거로 DAO를 거쳐 화면에 표시됩니다.
     
 -**코드 확인**
+
     ``` 
     @RequestMapping("/getCaller.do")
 	public String getCaller(MatchVO vo, Model model, HttpSession session) {
@@ -102,19 +106,20 @@ AMANNA는 유저간 상호 매칭을 서비스합니다.
   - **코드 확인**
    ``` 
     <input type="hidden" name="seq" id="matchSeq"> <input type="submit" value="수락하기" onclick="setMatchAction('yesMatch.do')">
-  ```
+   ```
 
       
 -**요청 수락 동작**
 - DB의 진행상태 컬럼이 '수락'으로 변경(UPDATE)됩니다.
-   - **코드 확인**
+-**코드 확인**
      
   	```
         public void yesMatch(MatchVO vo) {
 		System.out.println("===> MyBatis 사용 yesMatch(vo) 실행");
 		System.out.println("===> 담긴값 : " + vo);
 		mybatis.update("yesMatch", vo);
-	} ```
+	}
+	```
  
 -**요청 거절 동작**
 - 수락과 같은 방식으로 컬럼에 '거절'로 표시됩니다.
@@ -142,4 +147,14 @@ AMANNA는 유저간 상호 매칭을 서비스합니다.
 ![보낸매칭 수락](https://github.com/Integerous/all-in-one/assets/139945914/e59383fd-20b4-4e22-a4fb-3a971aaa20ce)
 - 이전에 스크립트 코드를 통해 유저가 1대1 채팅을 할 수 있습니다. 
 
-## 6. 회고 / 느낀점
+## 5. 회고 / 느낀점
+MVC 패턴으로 디자인 하여 각 모델을 분리하는 것에 중점을 두었던 프로젝트 였습니다. 
+6명의 인원으로 각 파트별로 나눈 점이 효율적인 유지보수를 도출했다고 생각합니다.
+
+Mapper 영역에서의 코드 작성 중,  JOIN을 이용할 떄가 많았는데 JOIN문 안의 테이블 + 컬럼명의 갯수가 많아 가독성이 떨어졌는데
+테이블의 별칭을 부여하여 작성했던것이 기억에 남았습니다.
+
+개인적으로 느낀점은 코드작성에 있어서 개념 뿐만 아니라 반복적인 실습만이 숙련도 향상을 위한 지름길이라고 생각했습니다.
+
+
+
