@@ -55,25 +55,25 @@ AMANNA는 유저간 상호 매칭을 서비스합니다.
 ### 4.2. 유저 프로필 확인
 ![유저 프로필 확인](https://github.com/Integerous/all-in-one/assets/139945914/d9c60193-501a-4d9f-bd8d-1f5fadfd751e)
 - 특정 유저의 프로필을 확인하고 로그인 상태에서 매칭을 신청할 수 있습니다.
-- '신청하기' 클릭시, 클릭된 해당  id 값이 <a>태그 안으로 저장되어 보내집니다.
+- '신청하기' 클릭시, 저장된 user.id 값이 <a>태그 내의 getMember.do를 실행합니다.
+-**코드 확인**
 - <a href="getMember.do?id=${user.id }"> 신청하기<br>(상세보기)
-						</a>
+  </a>
       
   
 - 저장된 id값은 MemberVO 타입의 vo에 담기고 DAO를 통해 해당 id를 가진 유저의 모든 데이터를 가져옵니다
 - 	public MemberVO getMember(MemberVO vo) {
 		System.out.println("===> MyBatis 사용 getMember() 실행");
 		mybatis.selectOne("memberDAO.getMember", vo);
-		
 		return mybatis.selectOne("memberDAO.getMember", vo);
 	}
 
 - 유저 회원가입 시 사진등록이 안 되었을 경우 '등록된 사진이 없습니다' 표시
 -**코드 확인**
-          <tr>
+        <tr>
 	<td><img alt="등록한 사진이 없습니다" src="pictures/${user.imgName }"
 	id="profilePic"></td>
- 	 </tr>
+ 	</tr>
 
 ### 4.3 나의 매칭목록 ( 발신 / 수신 )
 - ![나의 매칭목록](https://github.com/Integerous/all-in-one/assets/139945914/5ff31e1b-73e2-4160-a00f-be674c8854d9)
