@@ -5,14 +5,13 @@
 </br>
 
 ## 1. 제작 기간 & 참여 인원
-- 2023년 5월 18일 ~ 6월 20일
-- 팀 프로젝트
+  - 2023년 5월 18일 ~ 6월 20일
+  - 팀 프로젝트 (6명)
 
 </br>
 
 ## 2. 사용 기술
 #### `Back-end`
-  - Spring-tool-suite-3.9.13
   - Apache Tomcat 9.0.73
   - Java 1.8.0_361
   - MyBatis 3.4.6
@@ -25,6 +24,7 @@
   - JavaScript
 
 #### 'Tools'
+- Spring-tool-suite-3.9.13
 - SQLDeveloper-22.2.1.234.1810
 - Apache Maven
 
@@ -71,9 +71,9 @@ AMANNA는 유저간 상호 매칭을 서비스합니다.
 - 유저 회원가입 시 사진등록이 안 되었을 경우 '등록된 사진이 없습니다' 표시
 -**코드 확인**
           <tr>
-						<td><img alt="등록한 사진이 없습니다" src="pictures/${user.imgName }"
-							id="profilePic"></td>
-					</tr>
+	<td><img alt="등록한 사진이 없습니다" src="pictures/${user.imgName }"
+	id="profilePic"></td>
+ 	 </tr>
 
 ### 4.3 나의 매칭목록 ( 발신 / 수신 )
 - ![나의 매칭목록](https://github.com/Integerous/all-in-one/assets/139945914/5ff31e1b-73e2-4160-a00f-be674c8854d9)
@@ -90,7 +90,7 @@ AMANNA는 유저간 상호 매칭을 서비스합니다.
 	public String getCaller(MatchVO vo, Model model, HttpSession session) {
 		// 세션에서 "member" 속성 값을 가져옴
 	    MemberVO member = (MemberVO) session.getAttribute("member");
-	    System.out.println("로그인 정보 : " + member);
+	    System.out.println("로그인 정보 : " + member);                                
 		
 		MatchVO caller = matchService.getCaller(vo);
 		model.addAttribute("caller", caller); // Model 객체 사용 View에 데이터 전달
