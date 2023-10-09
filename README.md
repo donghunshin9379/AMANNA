@@ -23,7 +23,7 @@
   - HTML
   - JavaScript
 
-#### 'Tools'
+#### `Tools`
 - Spring-tool-suite-3.9.13
 - SQLDeveloper-22.2.1.234.1810
 - Apache Maven
