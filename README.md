@@ -32,7 +32,7 @@
 </br>
 
 ## 3. ERD 설계
-![ERD](https://github.com/Integerous/all-in-one/assets/139945914/871ba24e-20b4-4064-b2f3-2d35ed87c309)
+![ERD](https://github.com/donghunshin9379/test/assets/139945914/c612e5e0-f736-499c-8f2e-85b5a421aacc)
 
 
 ## 4. 핵심 기능
